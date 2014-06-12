@@ -9,6 +9,9 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -133,6 +136,47 @@ public class TimeRewards extends JavaPlugin implements Listener {
 			backend.setPlayTime(uuid, newTime);
 			times.remove(event.getPlayer().getUniqueId());
 		}
+	}
+	
+	@Override
+	public boolean onCommand(final CommandSender sender, Command cmd, String label, String[] args)
+	{
+		if (cmd.getName().equalsIgnoreCase("timerewards") || cmd.getName().equalsIgnoreCase("tr"))
+		{
+			if(sender.isOp() || sender.hasPermission("timerewards.admin"))
+			{
+				if(args.length == 1)
+				{
+					if(args[0].equalsIgnoreCase("reload"))
+					{
+						final TimeRewards plugin = this;
+						Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable(){
+							@Override
+							public void run() {
+								plugin.reloadConfig();
+								plugin.config = getConfig();
+								plugin.loadRewards();
+								Bukkit.getScheduler().runTask(plugin, new Runnable(){
+									@Override
+									public void run() {
+										sender.sendMessage(ChatColor.GREEN + "Config has been reloaded!");												
+									}
+								});					
+							}
+						});
+					}
+					else sender.sendMessage(ChatColor.RED + "Command not found! Try /tr reload");
+				}
+				else
+				{
+					sender.sendMessage(ChatColor.GREEN + "Time Rewards is enabled and functioning correctly!");
+					sender.sendMessage(ChatColor.GREEN + "Use /tr reload to reload the config");
+				}
+			}
+			else sender.sendMessage(ChatColor.RED + "You don't have permission to use that command!");
+			return true;
+		}
+		return false; 
 	}
 	
 }
