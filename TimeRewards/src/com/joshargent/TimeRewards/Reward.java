@@ -12,9 +12,9 @@ public class Reward {
 	private String cmd;	
 	private String name;
 	
-	public Reward(String name, int time, String message, String broadcast, String cmd)
+	public Reward(String name, double time, String message, String broadcast, String cmd)
 	{
-		this.time = time * 3600000; // multiply hours by 1 hour in ms
+		this.time = (long) (time * 3600000); // multiply hours by 1 hour in ms
 		this.message = message;
 		this.broadcast = broadcast;
 		this.cmd = cmd;

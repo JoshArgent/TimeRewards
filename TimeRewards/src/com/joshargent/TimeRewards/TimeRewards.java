@@ -105,7 +105,7 @@ public class TimeRewards extends JavaPlugin implements Listener {
 		{
 			if(config.isSet(t1 + ".time") && config.isSet(t1 + ".message") && config.isSet(t1 + ".broadcast") && config.isSet(t1 + ".command"))
 			{
-				int time = config.getInt(t1 + ".time");
+				double time = config.getDouble(t1 + ".time");
 				String message = config.getString(t1 + ".message");
 				String broadcast = config.getString(t1 + ".broadcast");
 				String command = config.getString(t1 + ".command");
