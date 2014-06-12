@@ -1,0 +1,9 @@
+name: TimeRewards
+main: com.joshargent.TimeRewards.TimeRewards
+version: 1.0.0
+commands:
+  timerewards:
+    description: Use this to reload the config from file
+    usage: /<command> reload
+    permission: timerewards.admin
+    aliases: [tr]

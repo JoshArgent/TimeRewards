@@ -1,0 +1,19 @@
+# -----------------------------
+#   TimeRewards - Josh Argent
+#      www.joshargent.com
+# -----------------------------
+#
+# Settings:
+# time - The time in hours the player must of been online playing for to earn the reward
+# message - The message sent to the player when they earn their reward. Use %player% for the player name. Set to "" for no message
+# broadcast - The message broadcast to the server. Use %player% for the player name. Set to "" for no message
+# command - The command executed by the console when the player earns their reward. Use %player% for player name.
+#
+# * All string messages allow the use of &[a-f]/[0-9] colour codes eg. &a or &3 *
+#
+
+example:
+  time: 24
+  message: "&aYou've been playing for 24 hours. Have 2 diamonds!"
+  broadcast: "&a%player% has been playing for 24 hours and earnt 2 diamonds!"
+  command: "give %player% diamond 2"
