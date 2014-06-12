@@ -33,13 +33,16 @@ public class Reward {
 	
 	public void giveReward(Player player)
 	{
-		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), insertPlayerName(cmd, player.getName()));
+		if(!cmd.equalsIgnoreCase("")) Bukkit.dispatchCommand(Bukkit.getConsoleSender(), insertPlayerName(cmd, player.getName()));
 		String broadcast2 = ChatColor.translateAlternateColorCodes('&', insertPlayerName(broadcast, player.getName()));
-		for(Player p : Bukkit.getOnlinePlayers())
+		if(!broadcast2.equalsIgnoreCase(""))
 		{
-			p.sendMessage(broadcast2);
+			for(Player p : Bukkit.getOnlinePlayers())
+			{
+				p.sendMessage(broadcast2);
+			}
 		}
-		player.sendMessage(ChatColor.translateAlternateColorCodes('&', insertPlayerName(message, player.getName())));
+		if(!message.equalsIgnoreCase("")) player.sendMessage(ChatColor.translateAlternateColorCodes('&', insertPlayerName(message, player.getName())));
 	}
 	
 	private String insertPlayerName(String cmd, String player)
